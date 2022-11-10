@@ -21,7 +21,7 @@ public class IUsuarioServiceImp implements IUsuarioService{
         String pw = user.getPassword();
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
     	user.setPassword(encoder.encode(pw));
-        user.setTipeUser("NORMAL");
+        user.setTipeUser("USER");
         usuarioRepository.save(user);
     }
 

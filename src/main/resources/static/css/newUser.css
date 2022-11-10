@@ -1,0 +1,38 @@
+.container{
+    background-color: rgba(0, 0, 0, 0.678);
+    width: 1000px;
+    margin: 20px auto;
+    color: #fff;
+}
+
+.container h2{
+    font-size: 32px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container input{
+    background-color: #000;
+    border: none;
+    height: 40px;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    
+}
+
+.back{
+    display: block;
+    background-color: #0082e6;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.back:hover{
+    background-color: #0562aa !important;
+    color: #fff !important;
+}

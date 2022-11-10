@@ -1,17 +1,23 @@
 package com.ataraxia.model;
 
+
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Psicologo extends Usuario {
+@PrimaryKeyJoinColumn
+public class Psicologo extends Usuario { 
 	
 	private String direccionTrabajo;
 	private String titulo;
 	
-	
+	public Psicologo (){
+		super();
+	}
+
 	public String getDireccionTrabajo() {
 		return direccionTrabajo;
 	}

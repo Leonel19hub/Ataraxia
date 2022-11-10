@@ -6,13 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+@Primary
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Usuario {
 
 	@Id
@@ -26,7 +31,7 @@ public class Usuario {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	@Lob
-	private String avatar; // photo perfil
+	private String avatar;
 	private String tipeUser;
 	
 	public Usuario() {
