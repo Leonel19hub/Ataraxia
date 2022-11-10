@@ -28,7 +28,7 @@ public class Autentication implements AuthenticationSuccessHandler{
                 Collection<?extends GrantedAuthority> autorizaciones = authentication.getAuthorities();
                 
                 for(GrantedAuthority grantedAuthority:autorizaciones) {
-                    if(grantedAuthority.getAuthority().equals("NORMAL")) { //en mayuscula
+                    if(grantedAuthority.getAuthority().equals("USER")) { //en mayuscula
                         tipoCliente=true;
                         break;
                     }else {
