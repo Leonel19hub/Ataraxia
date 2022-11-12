@@ -36,8 +36,10 @@ public class PsicologoController {
     }
 
     // Despues agreagar codigo para añadir foto
-    @PostMapping(value = "/guardarPiscologo")
+    @PostMapping("/guardarPsicologo")
     public ModelAndView savePsico(@Valid @ModelAttribute ("unPsico") Psicologo psicoNuevo, BindingResult resultado, ModelMap model){
+
+        ATARAXIA.info("***** Ingresando al metodo: savePsico *****");
         ModelAndView modelView = new ModelAndView();
 
         if (resultado.hasErrors()) {
@@ -48,17 +50,19 @@ public class PsicologoController {
         }
 
         try {
+            ATARAXIA.info("***** Guardando Psicologo *****");
             psicoService.savePsicologo(psicoNuevo);
         } catch (Exception e) {
             modelView.addObject("psicoErrorMessage", e.getMessage());
             modelView.addObject("unPsico", psicoService.newPsico());
             ATARAXIA.fatal("***** Saliendo del metodo PostMapping: savePsico *****");
-            modelView.setViewName("");
+            modelView.setViewName("newPsico");
             return modelView;
         }
 
-        modelView.addObject("piscoErrorMessage", "Psicologo gusrdado correctamente");
-        modelView.setViewName("");
+        modelView.addObject("piscoErrorMessage", "Psicologo guardado correctamente");
+        modelView.addObject("unPsico", psicoService.newPsico());
+        modelView.setViewName("newPsico");
         return modelView;
     }
 }

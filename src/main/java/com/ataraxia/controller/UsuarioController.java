@@ -4,6 +4,8 @@ import java.util.Base64;
 
 import javax.validation.Valid;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +23,8 @@ import com.ataraxia.service.IUsuarioService;
 @Controller
 public class UsuarioController {
 
+	private static final Log ATARAXIA = LogFactory.getLog(UsuarioController.class);
+
 	@Autowired
 	// @Qualifier("nuevoUsuario")
     Usuario nuevoUsuario;
@@ -35,8 +39,10 @@ public class UsuarioController {
         return modelView;
     }
 
-    @PostMapping(value = "/guardarUsuario", consumes = "multipart/form-data")
-    public ModelAndView saveUser(@Valid @ModelAttribute("unUsuario")Usuario usuarioNuevo, BindingResult resultado, ModelMap model, @RequestParam("file") MultipartFile file){
+    @PostMapping("/guardarUsuario")
+    public ModelAndView saveUser(@Valid @ModelAttribute("unUsuario")Usuario usuarioNuevo, BindingResult resultado, ModelMap model){
+		ATARAXIA.info("* Inresando al metodo: saveUser *");
+
 		ModelAndView  modelView = new ModelAndView();
         if (resultado.hasErrors()) {
 			modelView.setViewName("newUser");
@@ -49,21 +55,18 @@ public class UsuarioController {
 			// byte[] content = file.getBytes();
 			// String base64 = Base64.getEncoder().encodeToString(content);
 			// usuarioNuevo.setAvatar(base64);
+			ATARAXIA.info("* Guardando Usuario *");
 			usuarioService.saveUser(usuarioNuevo);
 		} catch (Exception e) {
 			modelView.addObject("formUsuarioErrorMessage", e.getMessage());
-			modelView.addObject("unUsuario", usuarioNuevo);
-			// model.addAttribute("formUsuarioErrorMessage", e.getMessage());
-			// model.addAttribute("unUsuario", usuarioNuevo);
-			// model.addAttribute("band", false);
+			modelView.addObject("unUsuario", usuarioService.newUser());
+			ATARAXIA.info("* Saliendo del metodo PostMapping: saveUser *");
 			modelView.setViewName("newUser");
+			return modelView;
 		}
 
-		// model.addAttribute("formUsuarioErrorMessage", "Usuario guardado correctamente");
-		// model.addAttribute("unUsuario", nuevoUsuario);
-		// model.addAttribute("band", false);
-		modelView.addObject("fomrUsuarioErrorMesage", "Usuario Guardado");
-		modelView.addObject("unUsuario", nuevoUsuario);
+		modelView.addObject("fomrUsuarioErrorMesage", "Usuario Guardado correctamente");
+		modelView.addObject("unUsuario", usuarioService.newUser());
 		modelView.setViewName("newUser");
 		return modelView;
     }

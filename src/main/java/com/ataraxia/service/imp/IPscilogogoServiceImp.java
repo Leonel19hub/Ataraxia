@@ -2,16 +2,21 @@ package com.ataraxia.service.imp;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ataraxia.controller.PsicologoController;
 import com.ataraxia.model.Psicologo;
 import com.ataraxia.repository.PsicologoRepository;
 import com.ataraxia.service.IPsicologoService;
 
 @Service
 public class IPscilogogoServiceImp implements IPsicologoService{
+    
+    private static final Log ATARAXIA = LogFactory.getLog(PsicologoController.class);
 
     @Autowired
     Psicologo nuevoPsico;
@@ -21,10 +26,11 @@ public class IPscilogogoServiceImp implements IPsicologoService{
 
     @Override
     public void savePsicologo(Psicologo psico) {
+        ATARAXIA.info("***** Encriptando Contraseña *****");
         String pw = psico.getPassword();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
         psico.setPassword(encoder.encode(pw));
-        psico.setTipeUser("USERPSICO");
+        psico.setTipeUser("PSICO");
         psicologoRepository.save(psico);
     }
 

@@ -30,8 +30,8 @@ public class Usuario {
 	private String password;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
-	@Lob
-	private String avatar;
+	// @Lob
+	// private String avatar;
 	private String tipeUser;
 	
 	public Usuario() {
@@ -85,13 +85,13 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public String getAvatar() {
-		return avatar;
-	}
+	// public String getAvatar() {
+	// 	return avatar;
+	// }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+	// public void setAvatar(String avatar) {
+	// 	this.avatar = avatar;
+	// }
 
 	public LocalDate getDob() {
 		return dob;
