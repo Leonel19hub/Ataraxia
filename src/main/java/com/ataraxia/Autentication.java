@@ -22,7 +22,7 @@ public class Autentication implements AuthenticationSuccessHandler{
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-                Boolean tipoCliente=false, tipoAdmin=false;
+                Boolean tipoCliente=false, tipoAdmin=false, tipoPsico=false;
 		
 		
                 Collection<?extends GrantedAuthority> autorizaciones = authentication.getAuthorities();
@@ -36,15 +36,26 @@ public class Autentication implements AuthenticationSuccessHandler{
                             tipoAdmin=true;
                             break;
                         }
+                        else{
+                            if (grantedAuthority.getAuthority().equals("PSICO")) {
+                                tipoPsico = true;
+                                break;
+                            }
+                        }
                     }
                     
                 }
                 
                 if(tipoCliente) {
-                    redirectStrategy.sendRedirect(request, response, "/index");
+                    redirectStrategy.sendRedirect(request, response, "/");
                 }else {
                     if(tipoAdmin) {
-                        redirectStrategy.sendRedirect(request, response, "/index");
+                        redirectStrategy.sendRedirect(request, response, "/");
+                    }
+                    else{
+                        if (tipoPsico) {
+                            redirectStrategy.sendRedirect(request, response, "/");
+                        }
                     }
                 }
         

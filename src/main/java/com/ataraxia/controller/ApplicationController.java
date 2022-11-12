@@ -11,7 +11,7 @@ public class ApplicationController {
 		return "index";	
 	}
 
-	@GetMapping("/tipo-registro")
+	@GetMapping("/registro")
     public String tipoRegistro(){
         return "pre-registro";
     }

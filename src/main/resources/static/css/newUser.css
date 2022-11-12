@@ -36,3 +36,19 @@
     background-color: #0562aa !important;
     color: #fff !important;
 }
+
+.container button{
+    width: 100%;
+    height: 40px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background-color: #0082e6;
+    border: none;
+}
+
+.container button:hover{
+    background-color: #0562aa;
+    cursor: pointer;
+}

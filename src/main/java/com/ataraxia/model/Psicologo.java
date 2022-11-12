@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@PrimaryKeyJoinColumn
+@PrimaryKeyJoinColumn(referencedColumnName = "idUser")
 public class Psicologo extends Usuario { 
 	
 	private String direccionTrabajo;

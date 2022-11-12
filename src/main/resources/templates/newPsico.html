@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
     <link rel="stylesheet" href="../static/css/newUser.css" th:href="@{css/newUser.css}">
-    <title>Registro Usuario</title>
+    <title>Registro Psicologo</title>
 </head>
 <body>
-
     <div th:insert="/layout/header :: header"></div>
-    
     <div class="container">
-        <h2>Registro Usuario</h2>
-        <form th:object="${unUsuario}" th:action="@{/guardarUsuario}" action="" method="post">
+        <h2>Registro Psicologo</h2>
+        <form th:object="${unPsico}" th:action="@{/guardarPsicologo}" action="" method="post">
             <label for="name">Nombre: </label>
             <input type="text" name="name" id="name" placeholder="Ingrese su nombre" th:field="*{name}">
             <br>
@@ -24,14 +22,20 @@
             <label for="userName">Nombre de Usuario: </label>
             <input type="text" name="userName" id="userName" placeholder="Ingrese su nombre de usuario" th:field="*{userName}">
             <br>
-            <label for="avatar">Subir Avatar</label>
+            <!-- <label for="avatar">Subir Avatar</label>
             <input type="file" id="file" name="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-            <br>
+            <br> -->
             <label for="password">Ingrese su contraseña: </label>
             <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" th:field="*{password}">
             <br>
             <label for="rptPass">Repita su contraseña: </label>
             <input type="password" name="rptPass" id="rptPass" placeholder="Vuelva a escribir su contraseña">
+            <br>
+            <label for="dirreccionTrabajo">Direccion de Trabajo</label>
+            <input type="text" name="dirTrabajo" id="dirTrabajo" placeholder="Escriba la dirrecion de su consultorio" th:field="*{direccionTrabajo}">
+            <br>
+            <label for="titulo">Titulo</label>
+            <input type="text" name="titulo" id="titulo" placeholder="Escriba su titulo" th:field="*{titulo}">
             <br>
             <label for="email">Ingrese su email: </label>
             <input type="email" name="email" id="email" th:field="*{email}">
@@ -41,8 +45,6 @@
             <br>
             <button type="submit">Registrarse</button>
         </form>
-
-        <a href="/" class="back">volver</a>
     </div>
 </body>
 </html>
