@@ -14,6 +14,9 @@ import com.ataraxia.service.IUsuarioService;
 public class IUsuarioServiceImp implements IUsuarioService{
 
     @Autowired
+    Usuario nuevoUsuario;
+
+    @Autowired
     UsuarioRepository usuarioRepository;
 
     @Override
@@ -45,6 +48,11 @@ public class IUsuarioServiceImp implements IUsuarioService{
         Usuario userFound = new Usuario();
         userFound = usuarioRepository.findById(idUser).orElseThrow(()-> new Exception("User not found"));
         return userFound;
+    }
+
+    @Override
+    public Usuario newUser() {
+        return nuevoUsuario;
     }
     
 }
