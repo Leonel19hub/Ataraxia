@@ -11,6 +11,11 @@ public class ApplicationController {
 		return "index";	
 	}
 
+	@GetMapping("/tipo-registro")
+    public String tipoRegistro(){
+        return "pre-registro";
+    }
+
 	@GetMapping("/login")
 	public String ingresar() {
 		return "login";

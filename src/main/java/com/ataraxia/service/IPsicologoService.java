@@ -9,6 +9,7 @@ import com.ataraxia.model.Psicologo;
 @Service
 public interface IPsicologoService {
     
+    public Psicologo newPsico();
     public void savePsicologo(Psicologo psico);
     public void deletePsicologo(Integer idPsico);
     public void editPsico(Psicologo psico);

@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 public interface IUsuarioService {
 
+    public Usuario newUser();
     public void saveUser(Usuario user);
     public void deleteUser(Integer idUser);
     public void editUser(Usuario user);
