@@ -44,9 +44,9 @@ public class IUsuarioServiceImp implements IUsuarioService{
     }
 
     @Override
-    public Usuario searchUser(Integer idUser) throws Exception {
+    public Usuario searchUser(String email) throws Exception {
         Usuario userFound = new Usuario();
-        userFound = usuarioRepository.findById(idUser).orElseThrow(()-> new Exception("User not found"));
+        userFound = usuarioRepository.findByEmail(email).orElseThrow(()-> new Exception("User not found"));
         return userFound;
     }
 

@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ataraxia.model.Psicologo;
+import com.ataraxia.model.Usuario;
 import com.ataraxia.service.IPsicologoService;
+import com.ataraxia.service.IUsuarioService;
 
 @Controller
 public class PsicologoController {
@@ -25,7 +28,12 @@ public class PsicologoController {
     Psicologo nuevoPsico;
 
     @Autowired
-    IPsicologoService psicoService; 
+    IPsicologoService psicoService;
+
+    @Autowired
+    IUsuarioService usuarioService;
+
+    
     
     @GetMapping("/registroPsicologo")
     ModelAndView uploadUserPsico(){
@@ -65,4 +73,21 @@ public class PsicologoController {
         modelView.setViewName("newPsico");
         return modelView;
     }
+
+    @GetMapping("/Psicologos")
+    public ModelAndView showPsicologos(Authentication authentication) throws Exception{
+        ModelAndView modelView = new ModelAndView("psicologos");
+        if (authentication == null) {
+			modelView.addObject("userLogin", false);
+        }
+        else{
+            modelView.addObject("userLogin", true);
+			// Integer idUser = Integer.parseInt(authentication.getName());
+			Usuario userDetalis = new Usuario();
+			userDetalis = usuarioService.searchUser(authentication.getName());
+			modelView.addObject("userD", userDetalis);
+            }
+        return modelView;
+    }
 }
+

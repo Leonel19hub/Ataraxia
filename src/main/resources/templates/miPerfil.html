@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
+    <link rel="stylesheet" href="../static/css/miPerfil.css" th:href="@{css/miPerfil.css}">
+    <title>Mi Perdil</title>
+</head>
+<body>
+    <div th:insert="/layout/header :: header"></div>
+    <h2 style="color: #fff">Mi Perfil: <span th:text="${userD.name}+'  '+${userD.lastname} +' '+${userD.email}+ ' '+${userD.tipeUser}"></span></h2>
+
+    <a th:href="@{/logout}">Logout</a>
+
+    <div class="main">
+        <div class="container">
+            <div class="left-ctn">
+
+            </div>
+            <div class="rigth-ctn">
+                <h3 th:text="${userD.name}"></h3>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript" src="../static/js/main.js" th:src="@{js/main.js}"></script>
+</body>
+</html>

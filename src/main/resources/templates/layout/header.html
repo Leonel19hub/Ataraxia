@@ -15,14 +15,17 @@
             </a>
             <ul>
                 <li> <a href="/" class="active">INICIO</a></li>
-                <li><a href="#">Psicologos</a></li>
-                <li><a href="#">Comunidad</a></li>
-                <li><a href="#">Contenido</a></li>
+                <li><a href="/Psicologos">Psicologos</a></li>
+                <li><a href="/Comunidad">Comunidad</a></li>
+                <li><a href="/Contenido">Contenido</a></li>
                 <!-- <li><a href="#">Mi perfil</a></li> -->
                 <!-- Al iniciar sesion se tendria que cambiar el texto a "Mi Perfil" -->
-                <li><a href="/login">Iniciar Sesion</a></li>
+                <li><a href="" id="changeLogin"><span  th:text="${userLogin}?'Mi Perfil':'Iniciar Sesion'"></span></a></li>
+                <!-- th:text="${userLogin}?'Iniciar Sesion':'Mi Perfil'" -->
             </ul>
         </nav>
     </header>
+
+    
 </body>
 </html>
