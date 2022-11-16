@@ -7,11 +7,13 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,4 +72,44 @@ public class UsuarioController {
 		modelView.setViewName("newUser");
 		return modelView;
     }
+
+	Usuario trash;
+
+	@GetMapping("/Mi-Perfil/{nameOfUser}")
+	public ModelAndView viewProfile(Authentication authentication, @PathVariable(name = "nameOfUser") String nameOfUser) throws Exception{
+		ModelAndView modelView = new ModelAndView("miPerfil");
+		Usuario findUser = new Usuario();
+		if (authentication == null) {
+			ATARAXIA.info("No inicio sesion");
+		}
+		else{
+			try {
+				findUser = usuarioService.searchUser(authentication.getName());
+				ATARAXIA.info("--------------------"+authentication.getName());
+			} catch (Exception e) {
+				ATARAXIA.fatal("Error: "+e.getMessage());
+			}
+			ATARAXIA.info("Ingresando al perfil del usuario: "+nameOfUser);
+			modelView.addObject("userLogin", true);
+			Usuario userDetalis = new Usuario();
+			userDetalis = usuarioService.searchUser(authentication.getName());
+			modelView.addObject("userD", userDetalis);
+			modelView.addObject("aUser", findUser);
+			trash = findUser;
+		}
+		return modelView;
+	}
+
+	@PostMapping("/Mi-Perfil")
+	public ModelAndView postEditUser(@ModelAttribute("userF") Usuario userMod){
+		ModelAndView modelView = new ModelAndView();
+		// userMod = trash;
+		ATARAXIA.info("VERIFICACION: "+userMod.getIdUser());
+		usuarioService.editUser(userMod);
+		modelView.addObject("userD", userMod);
+		modelView.addObject("aUser", userMod);
+		modelView.setViewName("miPerfil");
+
+		return modelView;
+	}
 }

@@ -2,6 +2,7 @@ package com.ataraxia.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ataraxia.model.Usuario;
@@ -30,25 +31,15 @@ public class ApplicationController {
 			modelView.addObject("userLogin", true);
 			userDetalis = usuarioService.searchUser(authentication.getName());
 			modelView.addObject("userD", userDetalis);
+			String nameLink = userDetalis.getName()+"-"+userDetalis.getLastname();
+			modelView.addObject("nameOfUser", nameLink);
+			System.out.println("---------"+nameLink+"----------");
 		}
 		return modelView;	
 	}
+	
 
-	@GetMapping("/Mi-Perfil")
-	public ModelAndView viewProfile(Authentication authentication) throws Exception{
-		ModelAndView modelView = new ModelAndView("miPerfil");
-		if (authentication == null) {
-			
-		}
-		else{
-			modelView.addObject("userLogin", true);
-			// Integer idUser = Integer.parseInt(authentication.getName());
-			Usuario userDetalis = new Usuario();
-			userDetalis = usuarioService.searchUser(authentication.getName());
-			modelView.addObject("userD", userDetalis);
-		}
-		return modelView;
-	}
+	
 
 	@GetMapping("/registro")
     public String tipoRegistro(){
