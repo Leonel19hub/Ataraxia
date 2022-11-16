@@ -4,11 +4,6 @@ console.log("bandUser2: "+bandUser2);
 
 // Inicializamoc la variable "elem" con el id del header "changeLogin"
 var elem = document.getElementById("changeLogin")
-if(bandUser2){
-    // Si es TRUE redirecciona a:
-    elem.setAttribute("href", "/Mi-Perfil");
-}
-else{
-    // Si es FALSE redirecciona a:
+if(!bandUser2){
     elem.setAttribute("href", "/login");
 }

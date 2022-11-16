@@ -1,0 +1,52 @@
+#headerAtaraxia{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 80px;
+    background-color: transparent;
+    display: flex;
+}
+
+body{
+    background-image: url("../img/imagen.jpg");
+    background-size: cover;
+    /* background-attachment: fixed; */
+}
+
+.logo{
+    color: #fff;
+    line-height: 80px;
+    font-size: 35px;
+    padding: 0 60px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+#ulAtaraxia{   
+    float: right;
+    margin-right: 20px;
+}
+
+#ulAtaraxia ul li {
+    line-height: 80px;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+#ulAtaraxia li a{
+    text-transform: uppercase;
+    font-size: 16px;
+    color: white;
+    padding: 7px 13px;
+    border-radius: 3px;
+}
+
+#ulAtaraxia li a:hover {
+    background: none;
+    color: #0082e6;
+}

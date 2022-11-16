@@ -81,11 +81,15 @@ public class PsicologoController {
 			modelView.addObject("userLogin", false);
         }
         else{
+            ATARAXIA.info(authentication.getName());
+
+
             modelView.addObject("userLogin", true);
-			// Integer idUser = Integer.parseInt(authentication.getName());
+
 			Usuario userDetalis = new Usuario();
 			userDetalis = usuarioService.searchUser(authentication.getName());
-			modelView.addObject("userD", userDetalis);
+			String nameLink = userDetalis.getName()+"-"+userDetalis.getLastname();
+			modelView.addObject("nameOfUser", nameLink);
             }
         return modelView;
     }
