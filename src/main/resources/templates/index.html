@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
+    <!-- <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}"> -->
+    <link rel="stylesheet" href="../static/css/mainNew.css" th:href="@{/css/mainNew.css}">
     <title>Ataraxia</title>
 </head>
 <body>
-    <div th:insert="/layout/header :: header"></div>
+    <div th:insert="/layout/headerNew :: header"></div>
 
     <script>
         var perfilName = "[[${userLink}]]";
         console.log("perfilName: "+perfilName);
     </script>
-    <!-- <script src="../static/js/main.js" th:src="@{js/main.js}"></script> -->
+    <script src="../static/js/main.js" th:src="@{js/main.js}"></script>
 </body>
 </html>

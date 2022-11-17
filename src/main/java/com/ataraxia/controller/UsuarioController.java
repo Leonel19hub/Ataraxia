@@ -85,15 +85,15 @@ public class UsuarioController {
 		else{
 			try {
 				findUser = usuarioService.searchUser(authentication.getName());
-				ATARAXIA.info("--------------------"+authentication.getName());
 			} catch (Exception e) {
 				ATARAXIA.fatal("Error: "+e.getMessage());
 			}
 			ATARAXIA.info("Ingresando al perfil del usuario: "+nameOfUser);
 			modelView.addObject("userLogin", true);
-			Usuario userDetalis = new Usuario();
-			userDetalis = usuarioService.searchUser(authentication.getName());
-			modelView.addObject("userD", userDetalis);
+			// Usuario userDetalis = new Usuario();
+			// userDetalis = usuarioService.searchUser(authentication.getName());
+			// modelView.addObject("userD", userDetalis);
+			modelView.addObject("userD", findUser);
 			modelView.addObject("aUser", findUser);
 			trash = findUser;
 		}
@@ -102,13 +102,12 @@ public class UsuarioController {
 
 	@PostMapping("/Mi-Perfil")
 	public ModelAndView postEditUser(@ModelAttribute("userF") Usuario userMod){
-		ModelAndView modelView = new ModelAndView();
 		// userMod = trash;
 		ATARAXIA.info("VERIFICACION: "+userMod.getIdUser());
 		usuarioService.editUser(userMod);
+		ModelAndView modelView = new ModelAndView("miPerfil");
 		modelView.addObject("userD", userMod);
 		modelView.addObject("aUser", userMod);
-		modelView.setViewName("miPerfil");
 
 		return modelView;
 	}
