@@ -1,52 +1,66 @@
-#headerAtaraxia{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-    font-family: 'Poppins', sans-serif;
-    width: 100%;
-    height: 80px;
-    background-color: transparent;
-    display: flex;
 }
 
 body{
     background-image: url("../img/imagen.jpg");
     background-size: cover;
-    /* background-attachment: fixed; */
 }
 
-.logo{
+.globalNav{
+    background-color: rgba(0, 0, 0, 0.726);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-logo{
+    width: 25%;
+    text-align: center;
+}
+
+.container-logo a{
     color: #fff;
+    text-transform: uppercase;
+    list-style: none;
+    text-decoration: none;
     line-height: 80px;
     font-size: 35px;
-    padding: 0 60px;
     font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.globalUl{
+    width: 75%;
+}
+
+.globalUl ul{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.globalUl ul li{
+    margin: 0 30px;
+    height: 80px;
+}
+
+.globalUl ul li a{
+    color: #fff;
     text-decoration: none;
-}
-
-
-#ulAtaraxia{   
-    float: right;
-    margin-right: 20px;
-}
-
-#ulAtaraxia ul li {
-    line-height: 80px;
-    display: inline-block;
-    margin: 0 5px;
-}
-
-#ulAtaraxia li a{
     text-transform: uppercase;
-    font-size: 16px;
-    color: white;
-    padding: 7px 13px;
-    border-radius: 3px;
+    /* font-weight: bold; */
+    font-size: 18px;
+    line-height: 80px;
+    letter-spacing: 2px;
 }
 
-#ulAtaraxia li a:hover {
-    background: none;
+.globalUl ul li a:hover{
     color: #0082e6;
 }

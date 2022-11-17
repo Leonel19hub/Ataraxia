@@ -25,7 +25,6 @@ public class ApplicationController {
 		Usuario userDetalis = new Usuario();
 		if (authentication == null) {
 			modelView.addObject("userLogin", false);
-			modelView.addObject("userD", null);
 		}
 		else{
 			modelView.addObject("userLogin", true);
@@ -38,8 +37,17 @@ public class ApplicationController {
 		return modelView;	
 	}
 	
-
-	
+	@GetMapping("/Contenido")
+	public ModelAndView content(Authentication authentication){
+		ModelAndView modelView = new ModelAndView("contenido");
+		if(!authentication.isAuthenticated()){
+			modelView.addObject("userLogin", false);
+		}
+		else{
+			modelView.addObject("userLogin", true);
+		}
+		return modelView;
+	}
 
 	@GetMapping("/registro")
     public String tipoRegistro(){

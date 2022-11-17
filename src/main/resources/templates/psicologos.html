@@ -4,30 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
+    <link rel="stylesheet" href="../static/css/mainNew.css" th:href="@{css/mainNew.css}">
     <title>Psicologos</title>
 </head>
-<style>
-    .container{
-        display: flex;
-    }
-    .list-psico{
-        width: 900px;
-        height: 500px;
-        background-color: rgba(0, 0, 0, 0.651);
-    }
-</style>
 <body>
-    <div th:insert="/layout/header :: header"></div>
+    <div th:insert="/layout/headerNew :: header"></div>
 
     <div class="container">
-        <div class="list-psico">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum voluptate eligendi commodi saepe aliquam, ipsum, totam ex quos deserunt quo praesentium mollitia consequatur quam sint repellendus ad aliquid ducimus minima?</p>
+        <div class="container-psico">
+            <h2>Lista de Psicologos</h2>
+            <div class="list-psico" th:each="psico:${listPisco}">
+                    <h3 th:text="${psico.name}+' '+${psico.lastname}"></h3>
+                    <p th:text="${psico.direccionTrabajo}"></p>
+            </div>
         </div>
-        <div class="map">
+        <!-- <div class="map">
             <h3>Mapa</h3>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14549.33253813828!2d-65.20370305!3d-24.265092149999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1668394833603!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+        </div> -->
     </div>
 
     <script th:inline="javascript" src="../static/js/main.js" th:src="@{js/main.js}"></script>

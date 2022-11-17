@@ -77,13 +77,11 @@ public class PsicologoController {
     @GetMapping("/Psicologos")
     public ModelAndView showPsicologos(Authentication authentication) throws Exception{
         ModelAndView modelView = new ModelAndView("psicologos");
+        modelView.addObject("listPisco", psicoService.showPsicos());
         if (authentication == null) {
 			modelView.addObject("userLogin", false);
         }
         else{
-            ATARAXIA.info(authentication.getName());
-
-
             modelView.addObject("userLogin", true);
 
 			Usuario userDetalis = new Usuario();
