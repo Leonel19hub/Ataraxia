@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/mainNew.css" th:href="@{/css/mainNew.css}">
+    <link rel="stylesheet" href="../static/css/contenido.css" th:href="@{/css/contenido.css}">
+    <title>Contenido</title>
+</head>
+<body>
+    <div th:insert="/layout/headerNew :: header"></div>
+
+    <div class="upload-publication">
+        <form action="">
+            <div class="contentUser">
+                <div class="imgUser">
+                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+                </div>
+                <p class="nameUser">Nombre del Usuario</p>
+            </div>
+            <textarea name="publication" id="publicationUser" placeholder="En que estas pensando"></textarea>
+            <input type="file" name="file" id="file">
+            <button type="submit">Publicar</button>
+        </form>
+    </div>
+
+    <div class="main-content">
+        <!-- <h3>Publicaciones de los usuarios</h3> -->
+        <div class="item-content">
+            <div class="contentUser">
+                <div class="imgUser">
+                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+                </div>
+                <p class="nameUser">Nombre del Usuario</p>
+            </div>
+            <div class="description-content">
+                <p class="description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia consectetur porro explicabo facilis praesentium ipsam officiis error, rem commodi nesciunt, molestiae accusamus eveniet non dolor modi ratione corporis beatae architecto.
+                </p>
+            </div>
+            <div class="info-publication">
+                <!-- Aqui estaria el video o imagen que carge el usuario -->
+                <img src="../static/img/imagen.jpg" th:src="@{img/imagen.jpg}" alt="">
+            </div>
+        </div>
+        <div class="item-content">
+            <div class="contentUser">
+                <div class="imgUser">
+                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+                </div>
+                <p class="nameUser">Nombre del Usuario</p>
+            </div>
+            <div class="description-content">
+                <p class="description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia consectetur porro explicabo facilis praesentium ipsam officiis error, rem commodi nesciunt, molestiae accusamus eveniet non dolor modi ratione corporis beatae architecto.
+                </p>
+            </div>
+            <div class="info-publication">
+                <!-- Aqui estaria el video o imagen que carge el usuario -->
+                <img src="../static/img/imagen.jpg" th:src="@{img/imagen.jpg}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/main.js" th:src="@{js/main.js}"></script>
+</body>
+</html>

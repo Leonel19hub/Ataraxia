@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org"></html>>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i> 
+            </label>
+            <a href="/" class="logo">
+                <!-- ATARAXIA.COM -->
+                ATARAXIA
+            </a>
+            <ul>
+                <li> <a href="/" class="active">INICIO</a></li>
+                <li><a href="/Psicologos">Psicologos</a></li>
+                <li><a href="/Comunidad">Comunidad</a></li>
+                <li><a href="/Contenido">Contenido</a></li>
+                <!-- <li><a href="#">Mi perfil</a></li> -->
+                <!-- Al iniciar sesion se tendria que cambiar el texto a "Mi Perfil" -->
+                <li><a th:href="@{'/Mi-Perfil/'+${nameOfUser}}" id="changeLogin"><span  th:text="${userLogin}?'Mi Perfil':'Iniciar Sesion'"></span></a></li>
+                <!-- th:text="${userLogin}?'Iniciar Sesion':'Mi Perfil'" -->
+            </ul>
+        </nav>
+    </header>
+
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
+    <link rel="stylesheet" href="../static/css/newUser.css" th:href="@{css/newUser.css}">
+    <title>Registro Usuario</title>
+</head>
+<body>
+
+    <div th:insert="/layout/header :: header"></div>
+    
+    <div class="container">
+        <h2>Registro Usuario</h2>
+        <form th:object="${unUsuario}" th:action="@{/guardarUsuario}" action="" method="post">
+            <label for="name">Nombre: </label>
+            <input type="text" name="name" id="name" placeholder="Ingrese su nombre" th:field="*{name}">
+            <br>
+            <label for="lastName">Apellido: </label>
+            <input type="text" name="lastName" id="lastName" placeholder="Ingrese su apellido" th:field="*{lastname}">
+            <br>
+            <label for="userName">Nombre de Usuario: </label>
+            <input type="text" name="userName" id="userName" placeholder="Ingrese su nombre de usuario" th:field="*{userName}">
+            <br>
+            <label for="avatar">Subir Avatar</label>
+            <input type="file" id="file" name="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
+            <br>
+            <label for="password">Ingrese su contraseña: </label>
+            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" th:field="*{password}">
+            <br>
+            <label for="rptPass">Repita su contraseña: </label>
+            <input type="password" name="rptPass" id="rptPass" placeholder="Vuelva a escribir su contraseña">
+            <br>
+            <label for="email">Ingrese su email: </label>
+            <input type="email" name="email" id="email" th:field="*{email}">
+            <br>
+            <label for="dob">Fecha de Nacimiento: </label>
+            <input type="date" name="dob" id="dob" th:field="*{dob}">
+            <br>
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <a href="/" class="back">volver</a>
+    </div>
+</body>
+</html>

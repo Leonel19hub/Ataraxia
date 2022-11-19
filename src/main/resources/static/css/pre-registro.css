@@ -1,0 +1,34 @@
+.container{
+    /* background-color: #000; */
+    width: 90%;
+    margin: 30px auto;
+    color: #fff;
+    display: flex;
+}
+
+.registro-usuario, .registro-psicologo{
+    background-color: rgba(0, 0, 0, 0.692);
+    margin: 20px;
+    padding: 15px;
+}
+
+h2{
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.registro{
+    display: block;
+    background-color: #0082e6;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.registro:hover{
+    background-color: #0562aa !important;
+    color: #fff !important;
+}

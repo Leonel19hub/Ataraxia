@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org"></html>>
+    
+</head>
+<body>
+    <header class="globalHeader">
+        <nav class="globalNav">
+            <div class="container-logo">
+                <a href="/" class="logo">
+                    ATARAXIA
+                </a>
+            </div>
+            <div class="globalUl">
+                <ul class="ulAtaraxia">
+                    <li> <a href="/" class="active">INICIO</a></li>
+                    <li><a href="/Psicologos">Psicologos</a></li>
+                    <li><a href="/Comunidad">Comunidad</a></li>
+                    <li><a href="/Contenido">Contenido</a></li>
+                    <li><a th:href="@{'/Mi-Perfil/'+${nameOfUser}}" id="changeLogin"><span  th:text="${userLogin}?'Mi Perfil':'Iniciar Sesion'"></span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    
+</body>
+</html>

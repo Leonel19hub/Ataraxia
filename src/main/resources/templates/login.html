@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" th:href="@{css/loginStyle.css}">
+    <link rel="stylesheet" href="style.css" th:href="@{css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login</title>
+</head>
+<body>
+    <!-- <form action="" th:object="${usuarioDeForm}" th:action="@{/login}" method="post">
+        <p>Login</p>
+        <label for="email">Ingrese su correo electronico: </label>
+        <input type="text" name="email" id="email" placeholder="Ingrese su correo electronico" >
+        <br>
+        <label for="password">Escriba su contraseña: </label>
+        <input type="password" name="password" id="password" placeholder="diigite su contraseña">
+        <br>
+        <button type="submit">Iniciar Sesion</button>
+        <a href="/registroUsuario">¿No tiene una cuenta?</a>
+    </form> -->
+
+    
+    <div th:insert="/layout/header :: header"></div>
+
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login" th:object="${usuarioDeForm}" th:action="@{/login}" method="post">
+                    <div class="login__field">
+                        <!-- <i class="login__icon fas fa-user"></i> -->
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" name="email" id="email" class="login__input" placeholder="Correo Electronico">
+                    </div>
+                    <div class="login__field">
+                        <!-- <i class="login__icon fas fa-lock"></i> -->
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="password" id="password" class="login__input" placeholder="Constraseña">
+                    </div>
+                    <button class="button login__submit" type="submit">
+                        <span class="button__text">Iniciar Sesion</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>				
+                    <a href="/registro" class="button login__submit" type="submit">
+                        <span class="button__text">¿No tiene una cuenta?</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </a>				
+                </form>
+                <!-- <div class="social-login">
+                    <h3>log in via</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-login__icon fab fa-instagram"></a>
+                        <a href="#" class="social-login__icon fab fa-facebook"></a>
+                        <a href="#" class="social-login__icon fab fa-twitter"></a>
+                    </div>
+                </div> -->
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
+        </div>
+    </div>
+</body>
+</html>
