@@ -19,6 +19,79 @@ public class ApplicationController {
 	@Autowired
 	IUsuarioService usuarioService;
 
+	@GetMapping("/admin/dashboard")
+	public ModelAndView adminDashboard(){
+		ModelAndView modelView = new ModelAndView("admin/dashboard");
+		return modelView;
+	}
+
+	@GetMapping("/admin/button")
+	public ModelAndView buttonLink(){
+		ModelAndView modelView = new ModelAndView("admin/button");
+		return modelView;
+	}
+
+	@GetMapping("/admin/typography")
+	public ModelAndView typographyLink(){
+		ModelAndView modelView = new ModelAndView("admin/typography");
+		return modelView;
+	}
+
+	@GetMapping("/admin/element")
+	public ModelAndView elementLink(){
+		ModelAndView modelView = new ModelAndView("admin/element");
+		return modelView;
+	}
+
+	@GetMapping("/admin/widget")
+	public ModelAndView widgetLink(){
+		ModelAndView modelView = new ModelAndView("admin/widget");
+		return modelView;
+	}
+
+	@GetMapping("/admin/form")
+	public ModelAndView formLink(){
+		ModelAndView modelView = new ModelAndView("admin/form");
+		return modelView;
+	}
+
+	@GetMapping("/admin/table")
+	public ModelAndView tableLink(){
+		ModelAndView modelView = new ModelAndView("admin/table");
+		return modelView;
+	}
+
+	@GetMapping("/admin/chart")
+	public ModelAndView chartLink(){
+		ModelAndView modelView = new ModelAndView("admin/chart");
+		return modelView;
+	}
+
+	@GetMapping("/admin/signin")
+	public ModelAndView siginLink(){
+		ModelAndView modelView = new ModelAndView("admin/signin");
+		return modelView;
+	}
+
+	@GetMapping("/admin/404")
+	public ModelAndView errorLink(){
+		ModelAndView modelView = new ModelAndView("admin/404");
+		return modelView;
+	}
+
+	@GetMapping("/admin/signup")
+	public ModelAndView singupLink(){
+		ModelAndView modelView = new ModelAndView("admin/signup");
+		return modelView;
+	}
+
+	@GetMapping("/admin/blank")
+	public ModelAndView blankLink(){
+		ModelAndView modelView = new ModelAndView("admin/blank");
+		return modelView;
+	}
+
+
 	@GetMapping("/")
 	public ModelAndView appHome(Authentication authentication) throws Exception {
 		ModelAndView modelView = new ModelAndView("index");
