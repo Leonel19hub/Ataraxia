@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div th:insert="/layout/navbarStart :: head"></div>
+    <title>Mostrar Usuarios</title>
+</head>
+<style>
+    .space{
+        margin: 0 5px;
+    }
+</style>
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+
+        <!-- Sidebar Start -->
+        <div th:insert="/layout/sidebarStart :: div"></div>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <div th:insert="/layout/navbarStart :: nav"></div>
+            <!-- Navbar End -->
+
+            <div class="container-fluid pt-4 px-4" style="margin-bottom: 20px;">
+                <div class="row g-4">
+                    <!-- Admin Table -->
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Usuarios: ADMIN</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Lastname</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">DOB</th>
+                                            <th scope="col">Operations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="admin:${listAdmin}" style="line-height: 50px;">
+                                            <th scope="row" th:text="${admin.idUser}"></th>
+                                            <td th:text="${admin.name}"></td>
+                                            <td th:text="${admin.lastname}"></td>
+                                            <td th:text="${admin.userName}"></td>
+                                            <td th:text="${admin.email}"></td>
+                                            <td th:text="${admin.dob}"></td>
+                                            <td>
+                                                <a href="" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- User Table -->
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Usuarios: USER</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Lastname</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">DOB</th>
+                                            <th scope="col">Operations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="user:${listUser}">
+                                            <th scope="row" th:text="${user.idUser}"></th>
+                                            <td th:text="${user.name}"></td>
+                                            <td th:text="${user.lastname}"></td>
+                                            <td th:text="${user.userName}"></td>
+                                            <td th:text="${user.email}"></td>
+                                            <td th:text="${user.dob}"></td>
+                                            <td>
+                                                <a href="" th:href="@{'/admin/modificar/'+${user.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Psico Table -->
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Usurios: PSICO</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Lastname</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">DOB</th>
+                                            <th scope="col">Operations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="user:${listUser}">
+                                            <th scope="row" th:text="${user.idUser}"></th>
+                                            <td th:text="${user.name}"></td>
+                                            <td th:text="${user.lastname}"></td>
+                                            <td th:text="${user.userName}"></td>
+                                            <td th:text="${user.email}"></td>
+                                            <td th:text="${user.dob}"></td>
+                                            <td>
+                                                <a href="" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <div th:insert="/layout/script :: body"></div>
+</body>
+</html>

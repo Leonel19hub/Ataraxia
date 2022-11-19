@@ -14,6 +14,8 @@ public interface IUsuarioService {
     public void deleteUser(String email) throws Exception;
     public void editUser(Usuario user);
     public List<Usuario> showUsers();
+    public List<Usuario> listAdmin();
+    public List<Usuario> listUser();
     public Usuario searchUser(String email) throws Exception;
     
 }
