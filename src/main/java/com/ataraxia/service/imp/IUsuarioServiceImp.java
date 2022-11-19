@@ -59,6 +59,40 @@ public class IUsuarioServiceImp implements IUsuarioService{
     }
 
     @Override
+    public List<Usuario> listAdmin() {
+        List<Usuario> adminList = new ArrayList<>();
+        adminList = (List<Usuario>) usuarioRepository.findAll();
+        List<Usuario> auxAdmin = new ArrayList<>();
+
+        for(int i=0; i < adminList.size();i++){
+            if (adminList.get(i).getStatusUser()) {
+                if (adminList.get(i).getTipeUser().equals("ADMIN")) {
+                    auxAdmin.add(adminList.get(i));
+                }
+            }
+        }
+
+        return auxAdmin;
+    }
+
+    @Override
+    public List<Usuario> listUser() {
+        List<Usuario> userList = new ArrayList<>();
+        userList = (List<Usuario>) usuarioRepository.findAll();
+        List<Usuario> auxUser = new ArrayList<>();
+
+        for(int i=0; i < userList.size();i++){
+            if (userList.get(i).getStatusUser()) {
+                if (userList.get(i).getTipeUser().equals("USER")) {
+                    auxUser.add(userList.get(i));
+                }
+            }
+        }
+
+        return auxUser;
+    }
+
+    @Override
     public Usuario searchUser(String email) throws Exception {
         Usuario userFound = new Usuario();
         userFound = usuarioRepository.findByEmail(email).orElseThrow(()-> new Exception("User not found"));
@@ -69,5 +103,6 @@ public class IUsuarioServiceImp implements IUsuarioService{
     public Usuario newUser() {
         return nuevoUsuario;
     }
+
     
 }

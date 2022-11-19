@@ -50,7 +50,7 @@ public class Autentication implements AuthenticationSuccessHandler{
                     redirectStrategy.sendRedirect(request, response, "/");
                 }else {
                     if(tipoAdmin) {
-                        redirectStrategy.sendRedirect(request, response, "/");
+                        redirectStrategy.sendRedirect(request, response, "/admin/dashboard");
                     }
                     else{
                         if (tipoPsico) {
