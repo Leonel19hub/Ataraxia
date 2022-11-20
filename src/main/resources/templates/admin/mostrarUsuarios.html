@@ -53,8 +53,8 @@
                                             <td th:text="${admin.email}"></td>
                                             <td th:text="${admin.dob}"></td>
                                             <td>
-                                                <a href="" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/modificar/'+${admin.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${admin.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -90,7 +90,7 @@
                                             <td th:text="${user.dob}"></td>
                                             <td>
                                                 <a href="" th:href="@{'/admin/modificar/'+${user.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${user.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -100,9 +100,9 @@
                         </div>
                     </div>
                     <!-- Psico Table -->
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Usurios: PSICO</h6>
+                            <h6 class="mb-4">Usuarios: PSICO</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -117,16 +117,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="user:${listUser}">
-                                            <th scope="row" th:text="${user.idUser}"></th>
-                                            <td th:text="${user.name}"></td>
-                                            <td th:text="${user.lastname}"></td>
-                                            <td th:text="${user.userName}"></td>
-                                            <td th:text="${user.email}"></td>
-                                            <td th:text="${user.dob}"></td>
+                                        <tr th:each="psico:${listPsico}">
+                                            <th scope="row" th:text="${psico.idUser}"></th>
+                                            <td th:text="${psico.name}"></td>
+                                            <td th:text="${psico.lastname}"></td>
+                                            <td th:text="${psico.userName}"></td>
+                                            <td th:text="${psico.email}"></td>
+                                            <td th:text="${psico.dob}"></td>
                                             <td>
-                                                <a href="" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/modificar/'+${user.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${user.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -134,7 +134,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

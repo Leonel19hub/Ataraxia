@@ -23,17 +23,23 @@ public class ApplicationController {
 	public ModelAndView appHome(Authentication authentication) throws Exception {
 		ModelAndView modelView = new ModelAndView("index");
 		Usuario userDetalis = new Usuario();
-		if (authentication == null) {
-			modelView.addObject("userLogin", false);
-		}
-		else{
-			modelView.addObject("userLogin", true);
-			userDetalis = usuarioService.searchUser(authentication.getName());
-			modelView.addObject("userD", userDetalis);
-			String nameLink = userDetalis.getName()+"-"+userDetalis.getLastname();
-			modelView.addObject("nameOfUser", nameLink);
-			System.out.println("---------"+nameLink+"----------");
-		}
+		// if (usuarioService.showUsers().size() == 0) {
+		// 	return modelView;
+		// }
+		// else{
+			if (authentication == null) {
+				modelView.addObject("userLogin", false);
+			}
+			else{
+				modelView.addObject("userLogin", true);
+				userDetalis = usuarioService.searchUser(authentication.getName());
+				modelView.addObject("userD", userDetalis);
+				String nameLink = userDetalis.getName()+"-"+userDetalis.getLastname();
+				modelView.addObject("nameOfUser", nameLink);
+				System.out.println("---------"+nameLink+"----------");
+			}
+		// }
+		
 		return modelView;	
 	}
 	

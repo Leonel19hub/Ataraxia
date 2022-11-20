@@ -26,16 +26,17 @@ public class IUsuarioServiceImp implements IUsuarioService{
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
     	user.setPassword(encoder.encode(pw));
         user.setTipeUser("USER");
-        user.setStatusUser(true);
+        // user.setStatusUser(true);
         usuarioRepository.save(user);
     }
 
     @Override
-    public void deleteUser(String email) throws Exception {
-        Usuario aux = new Usuario();
-        aux = searchUser(email);
-        aux.setStatusUser(false);
-        usuarioRepository.save(aux);
+    public void deleteUser(Integer idUser) throws Exception {
+        // Usuario aux = new Usuario();
+        // aux = searchUser(email);
+        // aux.setStatusUser(false);
+        // usuarioRepository.save(aux);
+        usuarioRepository.deleteById(idUser);
     }
 
     @Override
@@ -45,17 +46,18 @@ public class IUsuarioServiceImp implements IUsuarioService{
 
     @Override
     public List<Usuario> showUsers() {
-        List<Usuario> aux = new ArrayList<>();
-        aux = (List<Usuario>) usuarioRepository.findAll();
-        List<Usuario> aux2 = new ArrayList<>();
+        // List<Usuario> aux = new ArrayList<>();
+        // aux = (List<Usuario>) usuarioRepository.findAll();
+        // List<Usuario> aux2 = new ArrayList<>();
 
-        for (int i = 0; i < aux.size(); i++) {
-            if (aux.get(i).getStatusUser()) {
-                aux2.add(aux.get(i));
-            }
-        }
+        // for (int i = 0; i < aux.size(); i++) {
+        //     if (aux.get(i).getStatusUser()) {
+        //         aux2.add(aux.get(i));
+        //     }
+        // }
 
-        return aux2;
+        // return aux2;
+        return (List<Usuario>) usuarioRepository.findAll();
     }
 
     @Override
@@ -65,11 +67,11 @@ public class IUsuarioServiceImp implements IUsuarioService{
         List<Usuario> auxAdmin = new ArrayList<>();
 
         for(int i=0; i < adminList.size();i++){
-            if (adminList.get(i).getStatusUser()) {
+            // if (adminList.get(i).getStatusUser()) {
                 if (adminList.get(i).getTipeUser().equals("ADMIN")) {
                     auxAdmin.add(adminList.get(i));
                 }
-            }
+            // }
         }
 
         return auxAdmin;
@@ -82,11 +84,11 @@ public class IUsuarioServiceImp implements IUsuarioService{
         List<Usuario> auxUser = new ArrayList<>();
 
         for(int i=0; i < userList.size();i++){
-            if (userList.get(i).getStatusUser()) {
+            // if (userList.get(i).getStatusUser()) {
                 if (userList.get(i).getTipeUser().equals("USER")) {
                     auxUser.add(userList.get(i));
                 }
-            }
+            // }
         }
 
         return auxUser;
@@ -102,6 +104,16 @@ public class IUsuarioServiceImp implements IUsuarioService{
     @Override
     public Usuario newUser() {
         return nuevoUsuario;
+    }
+
+    @Override
+    public void saveUserAdmin(Usuario admin) {
+        String pw = admin.getPassword();
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
+    	admin.setPassword(encoder.encode(pw));
+        admin.setTipeUser("ADMIN");
+        // admin.setStatusUser(true);
+        usuarioRepository.save(admin);
     }
 
     
