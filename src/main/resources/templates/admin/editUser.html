@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <!-- <title th:text="'Editar: '+${userEdit.name}+' '+${userEdit.lastname}+' | Ataraxia'"></title> -->
+    <title>Modeificar Usuario</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -37,31 +38,27 @@
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Floating Label</h6>
-                            <form>
+                            <h6 class="mb-4" th:text="${userEdit.name}+' '+${userEdit.lastname}"></h6>
+                            <form th:object="${userEdit}" th:action="@{/admin/modificar}" method="post">
                                 <div class="row g-3">
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
+                                        <input type="text" class="form-control" id="floatingInput" th:value="${userEdit.name}" th:field="*{name}">
                                         <label for="floatingInput">Name</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
+                                        <input type="text" class="form-control" id="floatingInput" th:value="${userEdit.lastname}" th:field="*{lastname}">
                                         <label for="floatingInput">Lastname</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
+                                        <input type="text" class="form-control" id="floatingInput"th:value="${userEdit.userName}" th:field="*{userName}">
                                         <label for="floatingInput">Username</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="email" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
+                                        <input type="email" class="form-control" id="floatingInput" th:value="${userEdit.email}" th:field="*{email}">
                                         <label for="floatingInput">Email</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="date" class="form-control" id="floatingInput">
+                                        <input type="date" class="form-control" id="floatingInput" th:field="*{dob}">
                                         <label for="floatingInput">DOB</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
@@ -71,7 +68,8 @@
                                     </div>
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-primary" ><span th:text="${band}?'Modificar':'Registrarse'"></span>  </button>
+                                <button type="submit" class="btn btn-success rounded-pill">Modificar</button>
+                                <a th:href="@{/admin/mostrar-usuarios}" type="submit" class="btn btn-primary rounded-pill">Volver</a>
                                 <!--<a class="btn btn-light" th:href="@{/}">Volver</a>-->
                             </form>
                         </div>

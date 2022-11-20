@@ -37,7 +37,7 @@ public class IPscilogogoServiceImp implements IPsicologoService{
     @Override
     public void deletePsicologo(Integer idPsico) {
         // Encontrar una manera de eliminar el usuarioPsicologo usando delete
-        psicologoRepository.delete(null);
+        psicologoRepository.deleteById(idPsico);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Usuario {
 	// @Lob
 	// private String avatar;
 	private String tipeUser;
-	private Boolean statusUser;
+	// private Boolean statusUser;
 	
 	public Usuario() {
 	}
@@ -110,13 +110,13 @@ public class Usuario {
 		this.tipeUser = tipeUser;
 	}
 
-	public Boolean getStatusUser() {
-		return statusUser;
-	}
+	// public Boolean getStatusUser() {
+	// 	return statusUser;
+	// }
 
-	public void setStatusUser(Boolean statusUser) {
-		this.statusUser = statusUser;
-	}
+	// public void setStatusUser(Boolean statusUser) {
+	// 	this.statusUser = statusUser;
+	// }
 	
 	
 	

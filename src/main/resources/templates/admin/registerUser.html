@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Registro Usuario | Ataraxia</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <div th:insert="/layout/navbarStart :: head"></div>
+</head>
+<style>
+    *{
+        box-shadow: none !important;
+    }
+</style>
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+
+        <!-- Sidebar Start -->
+        <div th:insert="/layout/sidebarStart :: div"></div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <div th:insert="/layout/navbarStart :: nav"></div>
+            <!-- Navbar End -->
+
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <!-- Register ADMIN -->
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <form th:object="${unUsuarioAdmin}" th:action="@{/signup-admin}" method="post">
+                                <h6 class="mb-4">Registro ADMIN</h6>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{name}">
+                                    <label for="floatingPassword">Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{lastname}">
+                                    <label for="floatingPassword">Lastname</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword" th:field="*{userName}">
+                                    <label for="floatingPassword">Username</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{email}">
+                                    <label for="floatingPassword">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{dob}">
+                                    <label for="floatingPassword">Dob</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{password}">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <button type="submit" class="btn btn-success rounded-pill">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Register USER -->
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <form th:object="${unUsuarioUser}" th:action="@{/signup-user}" method="post">
+                                <h6 class="mb-4">Registro USER</h6>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{name}">
+                                    <label for="floatingPassword">Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{lastname}">
+                                    <label for="floatingPassword">Lastname</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword" th:field="*{userName}">
+                                    <label for="floatingPassword">Username</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{email}">
+                                    <label for="floatingPassword">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{dob}">
+                                    <label for="floatingPassword">Dob</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{password}">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <button type="submit" class="btn btn-success rounded-pill">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Register Psico -->
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <form th:object="${unUsuarioPsico}" th:action="@{/signup-psico}" method="post">
+                                <h6 class="mb-4">Registro PSICO</h6>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{name}">
+                                    <label for="floatingPassword">Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{lastname}">
+                                    <label for="floatingPassword">Lastname</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{userName}">
+                                    <label for="floatingPassword">Username</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{direccionTrabajo}">
+                                    <label for="floatingPassword">Adress Job</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{titulo}">
+                                    <label for="floatingPassword">Title</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{email}">
+                                    <label for="floatingPassword">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{dob}">
+                                    <label for="floatingPassword">Dob</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword"
+                                        placeholder="Password" th:field="*{password}">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <button type="submit" class="btn btn-success rounded-pill">Registrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <div th:insert="/layout/script :: body"></div>
+</body>
+
+</html>
