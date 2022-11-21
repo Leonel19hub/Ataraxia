@@ -53,8 +53,8 @@
                                             <td th:text="${admin.email}"></td>
                                             <td th:text="${admin.dob}"></td>
                                             <td>
-                                                <a href="" th:href="@{'/admin/modificar/'+${admin.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${admin.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/modificar/'+${admin.idUser}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${admin.idUser}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -89,8 +89,8 @@
                                             <td th:text="${user.email}"></td>
                                             <td th:text="${user.dob}"></td>
                                             <td>
-                                                <a href="" th:href="@{'/admin/modificar/'+${user.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${user.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/modificar/'+${user.idUser}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${user.idUser}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <!-- Psico Table -->
-                    <!-- <div class="col-12">
+                    <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
                             <h6 class="mb-4">Usuarios: PSICO</h6>
                             <div class="table-responsive">
@@ -125,8 +125,8 @@
                                             <td th:text="${psico.email}"></td>
                                             <td th:text="${psico.dob}"></td>
                                             <td>
-                                                <a href="" th:href="@{'/admin/modificar/'+${user.email}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
-                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${user.email}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="" th:href="@{'/admin/modificar/'+${psico.idUser}}" class="btn btn-warning rounded-pill space"><i class="fa-solid fa-pencil"></i></a>
+                                                <a href="" th:href="@{'/admin/eliminarUsuario/'+${psico.idUser}}" class="btn btn-danger rounded-pill space"><i class="fa-solid fa-trash"></i></a>
                                                 <a href="" class="btn btn-success rounded-pill space"><i class="fa-solid fa-user"></i></a>
                                             </td>
                                         </tr>
@@ -134,7 +134,8 @@
                                 </table>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+                    
                 </div>
             </div>
 

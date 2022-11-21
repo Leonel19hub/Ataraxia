@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ataraxia.model.Psicologo;
 import com.ataraxia.model.Usuario;
 import com.ataraxia.service.IPsicologoService;
 import com.ataraxia.service.IUsuarioService;
+
+import java.util.Base64;
 
 import javax.validation.Valid;
 
@@ -66,8 +70,8 @@ public class AdminController {
 		return modelView;
 	}
 
-	@PostMapping("/signup-user")
-	public ModelAndView saveUserFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication) throws Exception{
+	@PostMapping(value = "/signup-user", consumes = "multipart/form-data")
+	public ModelAndView saveUserFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication, @RequestParam("fileUser") MultipartFile fileUser) throws Exception{
 		ModelAndView modelView = new ModelAndView();
 
 		// Usario ADMIN online
@@ -83,6 +87,9 @@ public class AdminController {
 
 		try {
 			ATARAXIA.info("* Guardando Usuario *");
+			byte[] content = fileUser.getBytes();
+			String base64 = Base64.getEncoder().encodeToString(content);
+			usuarioNuevoUser.setAvatar(base64);
 			usuarioService.saveUser(usuarioNuevoUser);
 		} catch (Exception e) {
 			modelView.addObject("unUsuarioUser", usuarioService.newUser());
@@ -96,8 +103,8 @@ public class AdminController {
 		return modelView;
 	}
 
-	@PostMapping("/signup-psico")
-	public ModelAndView savePsicoFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication) throws Exception{
+	@PostMapping(value = "/signup-psico", consumes = "multipart/form-data")
+	public ModelAndView savePsicoFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication, @RequestParam("filePsico") MultipartFile filePsico) throws Exception{
 		ModelAndView modelView = new ModelAndView();
 
 		// Usario ADMIN online
@@ -113,6 +120,9 @@ public class AdminController {
 
 		try {
 			ATARAXIA.info("* Guardando Usuario *");
+			byte[] content = filePsico.getBytes();
+			String base64 = Base64.getEncoder().encodeToString(content);
+			usuarioNuevoPsico.setAvatar(base64);
 			psicologoService.savePsicologo(usuarioNuevoPsico);
 		} catch (Exception e) {
 			modelView.addObject("unUsuarioPsico",psicologoService.newPsico());
@@ -126,8 +136,8 @@ public class AdminController {
 		return modelView;
 	}
 
-	@PostMapping("/signup-admin")
-	public ModelAndView saveAdminFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication) throws Exception{
+	@PostMapping(value = "/signup-admin", consumes = "multipart/form-data")
+	public ModelAndView saveAdminFromAdmin(@Valid @ModelAttribute("unUsuarioAdmin")Usuario usuarioNuevoAdmin, @ModelAttribute("unUsuarioUser")Usuario usuarioNuevoUser, @ModelAttribute("unUsuarioPsico")Psicologo usuarioNuevoPsico, BindingResult resultado, ModelMap model, Authentication authentication, @RequestParam("fileAdmin") MultipartFile fileAdmin) throws Exception{
 		ModelAndView modelView = new ModelAndView();
 
 		// Usario ADMIN online
@@ -143,6 +153,9 @@ public class AdminController {
 
 		try {
 			ATARAXIA.info("* Guardando Usuario *");
+			byte[] content = fileAdmin.getBytes();
+			String base64 = Base64.getEncoder().encodeToString(content);
+			usuarioNuevoAdmin.setAvatar(base64);
 			usuarioService.saveUserAdmin(usuarioNuevoAdmin);
 		} catch (Exception e) {
 			modelView.addObject("unUsuarioAdmin", usuarioService.newUser());
@@ -158,7 +171,7 @@ public class AdminController {
 
 
     @GetMapping("/admin/mostrar-usuarios")
-	public ModelAndView listUsers(Authentication authentication, Model model) throws Exception{
+	public ModelAndView listUsers(Authentication authentication) throws Exception{
 		ModelAndView modelView = new ModelAndView("admin/mostrarUsuarios");
 
         Usuario userOnline = new Usuario();
@@ -166,11 +179,13 @@ public class AdminController {
         modelView.addObject("userDetails", userOnline);
 
 		try {
-			// modelView.addObject("listAdmin", usuarioService.listAdmin());
-			// modelView.addObject("listUser", usuarioService.listUser());
-			model.addAttribute("listAdmin", usuarioService.listAdmin());
-			model.addAttribute("listUser", usuarioService.listUser());
-			model.addAttribute("listPsico", psicologoService.showPsicos());
+			modelView.addObject("listAdmin", usuarioService.listAdmin());
+			modelView.addObject("listUser", usuarioService.listUser());
+			modelView.addObject("listPsico", psicologoService.showPsicos());
+			ATARAXIA.info("Cantidad de psicologos: "+psicologoService.showPsicos().size());
+			// model.addAttribute("listAdmin", usuarioService.listAdmin());
+			// model.addAttribute("listUser", usuarioService.listUser());
+			// model.addAttribute("listPsico", psicologoService.showPsicos());
 		} catch (Exception e) {
 			ATARAXIA.fatal("Error: "+e.getMessage());
 		}
@@ -178,8 +193,10 @@ public class AdminController {
 		return modelView;
 	}
 
-    @GetMapping("/admin/modificar/{urlUser}")
-    public ModelAndView editUserAdminOrUser(@PathVariable(name = "urlUser") String url, Authentication authentication, Model model) throws Exception{
+	Usuario userAux = new Usuario();
+
+    @GetMapping("/admin/modificar/{idUser}")
+    public ModelAndView editUserAdminOrUser(@PathVariable(name = "idUser") Integer id, Authentication authentication, Model model) throws Exception{
 		ModelAndView modelView = new ModelAndView("admin/editUser");
 		// Usario ADMIN online
         Usuario userOnline = new Usuario();
@@ -187,40 +204,63 @@ public class AdminController {
         modelView.addObject("userDetails", userOnline);
 		// Buscar usuario a modificar
 		Usuario userToEdit = new Usuario();
+		Usuario userDetailsInput = new Usuario();
 		try {
-			userToEdit = usuarioService.searchUser(url);
+			userToEdit = usuarioService.searchUserById(id);
+			userDetailsInput = usuarioService.searchUserById(id);
+			ATARAXIA.info("Usuario encontrado: "+userToEdit.getEmail());
 		} catch (Exception e) {
 			ATARAXIA.info("Error: "+e.getMessage());
 		}
 		// modelView.addObject("userEdit", userToEdit);
 		model.addAttribute("userEdit", userToEdit);
+		model.addAttribute("userInput", userDetailsInput);
+		model.addAttribute("hidden", true);
+		userAux = userToEdit;
         
         return modelView;
     }
 
-	@PostMapping("/admin/modificar")
-	public ModelAndView postEditUserOrAdmin(@ModelAttribute("userF") Usuario modifiedUser, Authentication authentication) throws Exception{
-		usuarioService.editUser(modifiedUser);
-		ModelAndView modelView = new ModelAndView("admin/editUser");
-		// Usurio ADMIN online
-		Usuario userOnline = new Usuario();
-        userOnline = usuarioService.searchUser(authentication.getName());
-        modelView.addObject("userDetails", userOnline);
-		// Usuario userToEdit = new Usuario();
-		// userToEdit = usuarioService.searchUser(url);
-		// modelView.addObject("userEdit", userToEdit);
+	// @PostMapping("/admin/modificar")
+	// public ModelAndView postEditUserOrAdmin(@ModelAttribute("userF") Usuario modifiedUser, Authentication authentication) throws Exception{
+	// 	ATARAXIA.info("UserEdit: "+userAux.getName()+" "+userAux.getUserName());
+	// 	ATARAXIA.info("UserEdit: "+modifiedUser.getName()+" "+modifiedUser.getUserName()+" "+modifiedUser.getIdUser());
+	// 	usuarioService.editUser(modifiedUser);
+	// 	ModelAndView modelView = new ModelAndView("admin/dashboard");
 
-		return modelView;
+	// 	Usuario userOnline = new Usuario();
+    //     userOnline = usuarioService.searchUser(authentication.getName());
+    //     modelView.addObject("userDetails", userOnline);
+
+	// 	return modelView;
+	// }
+
+	@PostMapping("/admin/modificar")
+	public String postEditUserorAdminString(@ModelAttribute("userF") Usuario modifiedUser, Authentication authentication, Model model) throws Exception{
+		// Usario ADMIN online
+        Usuario userOnline = new Usuario();
+        userOnline = usuarioService.searchUser(authentication.getName());
+		model.addAttribute("userDetails", userOnline);
+
+		model.addAttribute("listAdmin", usuarioService.listAdmin());
+		model.addAttribute("listUser", usuarioService.listUser());
+		model.addAttribute("listPsico", psicologoService.showPsicos());
+
+		model.addAttribute("hidden", true);
+
+		usuarioService.editUser(modifiedUser);
+
+		return "redirect:/admin/mostrar-usuarios";
 	}
 	
-	@GetMapping("/admin/eliminarUsuario/{email}")
-	public String deleteUser(@PathVariable(name = "email") String email, Model model){
+	@GetMapping("/admin/eliminarUsuario/{id}")
+	public String deleteUser(@PathVariable(name = "id") Integer id, Model model){
 		try {
-			Usuario aux = usuarioService.searchUser(email);
-			usuarioService.deleteUser(aux.getIdUser());
+			// Usuario aux = usuarioService.searchUserById(id);
+			usuarioService.deleteUser(id);
 		} catch (Exception e) {
 			ATARAXIA.fatal("Error: "+e.getMessage());
-			return "redirect:/modificar/{email}";
+			return "redirect:/modificar/{id}";
 		}
 		return "redirect:/admin/mostrar-usuarios";
 	}

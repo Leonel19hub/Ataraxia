@@ -2,6 +2,18 @@
 <html lang="es" xmlns="http://www.thymeleaf.org"></html>>
     
 </head>
+<!-- <style>
+    #foto-perfil{
+        width: 40px; 
+        height: 40px;
+        background-size: 100% 100% !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+    #foto-perfil img{
+        width: 100% !important;
+    }
+</style> -->
 <body>
 
     
@@ -12,8 +24,8 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="../../static/img/user.jpg" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    <img class="rounded-circle me-lg-2" th:if="${userDetails.avatar} == null" src="../../static/img/userDefault.png" th:src="@{/img/userDefault.png}" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" th:if="${userDetails.avatar} != null" th:src="${'data:image/png;base64,'+userDetails.avatar}" src="../../static/img/user.jpg" alt="" style="width: 40px; height: 40px;">
                 </div>
                 <div class="ms-3">
                     <h6 class="mb-0" th:text="${userDetails.name}+' '+${userDetails.lastname}"></h6>
@@ -22,7 +34,7 @@
             </div>
             <div class="navbar-nav w-100">
                 <a href="/admin/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="/admin/mostrar-usuarios" class="nav-item nav-link"><i class="fa-solid fa-user me-2"></i>Usuarios</a>
+                <!-- <a href="/admin/mostrar-usuarios" class="nav-item nav-link"><i class="fa-solid fa-user me-2"></i>Usuarios</a> -->
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user me-2"></i>Usuarios</a>
                     <div class="dropdown-menu bg-transparent border-0">

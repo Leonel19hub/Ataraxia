@@ -18,5 +18,6 @@ public interface IUsuarioService {
     public List<Usuario> listAdmin();
     public List<Usuario> listUser();
     public Usuario searchUser(String email) throws Exception;
+    public Usuario searchUserById(Integer idUser) throws Exception;
     
 }
