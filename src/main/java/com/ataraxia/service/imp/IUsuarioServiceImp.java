@@ -116,5 +116,10 @@ public class IUsuarioServiceImp implements IUsuarioService{
         usuarioRepository.save(admin);
     }
 
+    @Override
+    public Usuario searchUserById(Integer idUser) throws Exception {
+        return usuarioRepository.findById(idUser).orElseThrow(()-> new Exception("Usuer not found by id"));
+    }
+
     
 }

@@ -38,33 +38,45 @@
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4" th:text="${userEdit.name}+' '+${userEdit.lastname}"></h6>
+                            <h6 class="mb-4" th:text="${userInput.name}+' '+${userInput.lastname}"></h6>
                             <form th:object="${userEdit}" th:action="@{/admin/modificar}" method="post">
+                                <input type="hidden" class="form-control" th:if="${hidden}" th:field="*{idUser}">
+                                <input type="hidden" class="form-control" th:if="${hidden}" th:field="*{password}">
+                                <input type="hidden" class="form-control" th:if="${hidden}" th:field="*{tipeUser}">
+                                <input type="hidden" class="form-control" th:if="${hidden}" th:field="*{password}">
+                                <input type="hidden" class="form-control" th:if="${hidden}" th:field="*{avatar}">
                                 <div class="row g-3">
-                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput" th:value="${userEdit.name}" th:field="*{name}">
-                                        <label for="floatingInput">Name</label>
+                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4" th:if="${hidden} == false">
+                                        <input type="text" class="form-control" id="idUser" name="idUser" th:field="*{idUser}">
+                                        <label for="idUser">Id</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput" th:value="${userEdit.lastname}" th:field="*{lastname}">
-                                        <label for="floatingInput">Lastname</label>
+                                        <input type="text" class="form-control" id="name" name="name"  th:field="*{name}">
+                                        <label for="name">Name</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="text" class="form-control" id="floatingInput"th:value="${userEdit.userName}" th:field="*{userName}">
-                                        <label for="floatingInput">Username</label>
+                                        <input type="text" class="form-control" id="lastname" name="lastname"  th:field="*{lastname}">
+                                        <label for="lastname">Lastname</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="email" class="form-control" id="floatingInput" th:value="${userEdit.email}" th:field="*{email}">
-                                        <label for="floatingInput">Email</label>
+                                        <input type="text" class="form-control" id="userName" name="username" th:field="*{userName}">
+                                        <label for="userName">Username</label>
                                     </div>
                                     <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="date" class="form-control" id="floatingInput" th:field="*{dob}">
+                                        <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4" th:if="${hidden} == false">
+                                        <input type="text" class="form-control" id="typeUser" name="typeUser"  th:field="*{tipeUser}">
+                                        <label for="email">Type User</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4" th:if="${hidden} == false">
+                                        <input type="password" class="form-control" id="password" name="password"  th:field="*{password}">
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
+                                        <input type="date" class="form-control" id="floatingInput" th:value="${userInput.dob}" th:field="*{dob}">
                                         <label for="floatingInput">DOB</label>
-                                    </div>
-                                    <div class="form-floating mb-3 col-6 col-sm-6 col-lg-4">
-                                        <input type="password" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
                                     </div>
                                 </div>
                                 <br>
