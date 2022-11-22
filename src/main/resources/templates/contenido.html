@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/mainNew.css" th:href="@{/css/mainNew.css}">
     <link rel="stylesheet" href="../static/css/contenido.css" th:href="@{/css/contenido.css}">
+    <div th:insert="/layout/navbarStart :: head"></div>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    
     <title>Contenido</title>
 </head>
+
 <body>
     <div th:insert="/layout/headerNew :: header"></div>
 
     <div class="upload-publication">
-        <form action="">
+        <form th:object="${postContent}" th:action="@{/publicar-post}" method="post" enctype="multipart/form-data">
             <div class="contentUser">
                 <div class="imgUser">
-                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+                    <img class="rounded-circle me-lg-2" th:if="${userDetails.avatar} == null"
+                        src="../../static/img/userDefault.png" th:src="@{/img/userDefault.png}" alt=""
+                        style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" th:if="${userDetails.avatar} != null"
+                        th:src="${'data:image/png;base64,'+userDetails.avatar}" src="../../static/img/user.jpg" alt=""
+                        style="width: 40px; height: 40px;">
                 </div>
-                <p class="nameUser">Nombre del Usuario</p>
+                <p class="nameUser" th:text="${userDetails.name}+' '+${userDetails.lastname}"></p>
             </div>
-            <textarea name="publication" id="publicationUser" placeholder="En que estas pensando"></textarea>
-            <input type="file" name="file" id="file">
+            <textarea name="publication" id="publicationUser" placeholder="En que estas pensando"
+                th:field="*{descriptionPost}"></textarea>
+            <input type="file" name="post" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg"
+                onchange="loadFile(event)">
+            <img id="output" style="padding-top: 2px; width: 146px;" />
             <button type="submit">Publicar</button>
         </form>
     </div>
 
-    <div class="main-content">
-        <!-- <h3>Publicaciones de los usuarios</h3> -->
-        <div class="item-content">
+    <!-- <div class="main-content">
+        <div class="item-content" th:each="post:${listPost}">
             <div class="contentUser">
                 <div class="imgUser">
-                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+                    <img class="rounded-circle me-lg-2" th:if="${userDetails.avatar} == null" src="../../static/img/userDefault.png" th:src="@{/img/userDefault.png}" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" th:if="${userDetails.avatar} != null" th:src="${'data:image/png;base64,'+userDetails.avatar}" src="../../static/img/user.jpg" alt="" style="width: 40px; height: 40px;">
                 </div>
-                <p class="nameUser">Nombre del Usuario</p>
+                <p class="nameUser">Nombre de Usuarui</p>
             </div>
             <div class="description-content">
-                <p class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia consectetur porro explicabo facilis praesentium ipsam officiis error, rem commodi nesciunt, molestiae accusamus eveniet non dolor modi ratione corporis beatae architecto.
-                </p>
+                <p class="description" th:text="${post.descriptionPost}"></p>
             </div>
             <div class="info-publication">
-                <!-- Aqui estaria el video o imagen que carge el usuario -->
-                <img src="../static/img/imagen.jpg" th:src="@{img/imagen.jpg}" alt="">
+                <img th:src="${'data:image/png;base64,'+post.imgPost}" alt="" style="max-height: 500px;">
             </div>
         </div>
-        <div class="item-content">
-            <div class="contentUser">
-                <div class="imgUser">
-                    <img src="../static/img/userDefault.png" th:src="@{img/userDefault.png}" alt="">
+    </div> -->
+
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-6">
+                <div class="card"  th:each="post:${listPost}" style="margin-bottom: 20px;">
+                    <div class="d-flex justify-content-between p-2 px-3">
+                        <div class="d-flex flex-row align-items-center"> 
+                            <img class="rounded-circle me-lg-2" th:if="${post.usuario.avatar} == null" src="../../static/img/userDefault.png" th:src="@{/img/userDefault.png}" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" th:if="${post.usuario.avatar} != null" th:src="${'data:image/png;base64,'+post.usuario.avatar}" src="../../static/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="d-flex flex-column ml-2" style="margin-left: 10px;"> 
+                                <span class="font-weight-bold" th:text="${post.usuario.name}+' '+${post.usuario.lastname}"></span>
+                                <!-- <small class="text-primary" th:text="${post.usuario.name}"></small>  -->
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row mt-1 ellipsis"> 
+                            <small class="mr-2" th:text="${time}"></small>
+                        </div>
+                    </div> <img th:src="${'data:image/png;base64,'+post.imgPost}" class="img-fluid" style="max-height: 700px;">
+                    <div class="p-2">
+                        <p class="text-justify" th:text="${post.descriptionPost}"></p>
+                        </div>
+                    </div>
                 </div>
-                <p class="nameUser">Nombre del Usuario</p>
-            </div>
-            <div class="description-content">
-                <p class="description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia consectetur porro explicabo facilis praesentium ipsam officiis error, rem commodi nesciunt, molestiae accusamus eveniet non dolor modi ratione corporis beatae architecto.
-                </p>
-            </div>
-            <div class="info-publication">
-                <!-- Aqui estaria el video o imagen que carge el usuario -->
-                <img src="../static/img/imagen.jpg" th:src="@{img/imagen.jpg}" alt="">
             </div>
         </div>
     </div>
 
     <script src="../static/js/main.js" th:src="@{js/main.js}"></script>
 </body>
+
 </html>

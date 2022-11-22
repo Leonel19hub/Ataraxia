@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ataraxia.model.Publicacion;
 import com.ataraxia.model.Usuario;
+import com.ataraxia.service.IPublicacionService;
 import com.ataraxia.service.IUsuarioService;
 
-import javax.validation.constraints.Null;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +21,9 @@ public class ApplicationController {
 
 	@Autowired
 	IUsuarioService usuarioService;
+
+	@Autowired
+	IPublicacionService postService;
 
 	@GetMapping("/")
 	public ModelAndView appHome(Authentication authentication) throws Exception {
@@ -44,13 +50,27 @@ public class ApplicationController {
 	}
 	
 	@GetMapping("/Contenido")
-	public ModelAndView content(Authentication authentication){
+	public ModelAndView content(Authentication authentication) throws Exception{
 		ModelAndView modelView = new ModelAndView("contenido");
 		if(!authentication.isAuthenticated()){
 			modelView.addObject("userLogin", false);
 		}
 		else{
 			modelView.addObject("userLogin", true);
+			// Get publicar un post
+			Publicacion postFromContent = new Publicacion();
+			modelView.addObject("postContent", postFromContent);
+			// Usario ADMIN online
+			Usuario userOnline = new Usuario();
+			userOnline = usuarioService.searchUser(authentication.getName());
+			modelView.addObject("userDetails", userOnline);
+			// Listar las publicaciones
+			// modelView.addObject("listPost", postService.showAllPost());
+			// Estas dos lineas dan vuelta la lista, para que la ultima sea la primera a la vista
+			List<Publicacion> listReverse = postService.showAllPost();
+			Collections.reverse(listReverse);
+			modelView.addObject("listPost", listReverse);
+
 		}
 		return modelView;
 	}
