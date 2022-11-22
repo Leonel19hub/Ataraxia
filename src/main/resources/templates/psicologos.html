@@ -5,25 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/mainNew.css" th:href="@{css/mainNew.css}">
+    <div th:insert="/layout/navbarStart :: head"></div>
     <title>Psicologos</title>
 </head>
 <body>
     <div th:insert="/layout/headerNew :: header"></div>
 
-    <div class="container">
-        <div class="container-psico">
-            <h2>Lista de Psicologos</h2>
-            <div class="list-psico" th:each="psico:${listPisco}">
-                    <h3 th:text="${psico.name}+' '+${psico.lastname}"></h3>
-                    <p th:text="${psico.direccionTrabajo}"></p>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Lista de Psicologos</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Provincia</th>
+                                    <th scope="col">Localidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="psico:${listPisco}">
+                                    <th scope="row" th:text="${psico.idUser}"></th>
+                                    <th th:text="${psico.name}"></th>
+                                    <td th:text="${psico.lastname}"></td>
+                                    <td th:text="${psico.email}"></td>
+                                    <td th:text="${psico.provincia}"></td>
+                                    <td th:text="${psico.localidad}"></td>
+                                    <!-- <td th:text="${psico}"></td>
+                                    <td th:text="${psico}"></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- <div class="map">
-            <h3>Mapa</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14549.33253813828!2d-65.20370305!3d-24.265092149999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1668394833603!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div> -->
     </div>
 
+    <div th:insert="/layout/script :: body"></div>
     <script th:inline="javascript" src="../static/js/main.js" th:src="@{js/main.js}"></script>
 </body>
 </html>

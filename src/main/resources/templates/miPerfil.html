@@ -26,7 +26,9 @@
                     <div class="card mb-4 mb-xl-0">
                         <div class="card-header">Foto de Perfil</div>
                         <div class="img-profile card-body text-center">
-                            <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="300px">
+                            <!-- <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" width="300px"> -->
+                            <img class="img-account-profile rounded-circle mb-2" th:if="${aUser.avatar} == null" th:src="@{/img/userDefault.png}" alt="" style="width: 200px !important;">
+                            <img class="img-account-profile rounded-circle mb-2" th:if="${aUser.avatar} != null" th:src="${'data:image/png;base64,'+aUser.avatar}" alt="">
                         </div>
                     </div>
                 </div>
