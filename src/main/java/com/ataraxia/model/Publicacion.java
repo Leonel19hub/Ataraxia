@@ -6,18 +6,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+// @PrimaryKeyJoinColumn(referencedColumnName = "idUser")
 public class Publicacion {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPost;
+    @Lob
+    private String imgPost;
     private String descriptionPost;
     private LocalDateTime datePost;
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private Usuario usuario;
 
     public Integer getIdPost() {
         return idPost;
@@ -36,6 +46,18 @@ public class Publicacion {
     }
     public void setDatePost(LocalDateTime datePost) {
         this.datePost = datePost;
+    }
+    public String getImgPost() {
+        return imgPost;
+    }
+    public void setImgPost(String imgPost) {
+        this.imgPost = imgPost;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     

@@ -1,6 +1,7 @@
 package com.ataraxia.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,6 +36,8 @@ public class Usuario {
 	private String avatar;
 	private String tipeUser;
 	// private Boolean statusUser;
+	@OneToMany(mappedBy="usuario")
+	private Set<Publicacion> publicacion;
 	
 	public Usuario() {
 	}

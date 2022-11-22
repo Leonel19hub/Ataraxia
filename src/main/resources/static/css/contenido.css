@@ -14,6 +14,7 @@
     background-color: rgba(0, 0, 0, 0.56);
     padding: 15px;
     margin: 10px 0;
+    color: #fff;
 }
 
 .main-content{
@@ -70,12 +71,14 @@
 
 .info-publication{
     width: 100%;
-    
+    /* height: 700px; */
+    max-height: 700px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
 }
 
-.info-publication img{
+/* .info-publication img{
     width: 100%;
-}
+} */
