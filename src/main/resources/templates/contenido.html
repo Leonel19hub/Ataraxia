@@ -75,9 +75,10 @@
                         <div class="d-flex flex-row mt-1 ellipsis"> 
                             <small class="mr-2" th:text="${time}"></small>
                         </div>
-                    </div> <img th:src="${'data:image/png;base64,'+post.imgPost}" class="img-fluid" style="max-height: 700px;">
-                    <div class="p-2">
-                        <p class="text-justify" th:text="${post.descriptionPost}"></p>
+                    </div> 
+                        <img th:src="${'data:image/png;base64,'+post.imgPost}" class="img-fluid" style="max-height: 700px;">
+                        <div class="p-2" style="margin-top: 5px;">
+                            <p class="text-justify" th:text="${post.descriptionPost}"></p>
                         </div>
                     </div>
                 </div>

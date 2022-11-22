@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,17 +23,20 @@
             <label for="userName">Nombre de Usuario: </label>
             <input type="text" name="userName" id="userName" placeholder="Ingrese su nombre de usuario" th:field="*{userName}">
             <br>
-            <!-- <label for="avatar">Subir Avatar</label>
-            <input type="file" id="file" name="file" accept="image/x-png,image/gif,image/jpeg,image/png,image/jpeg" onchange="loadFile(event)">
-            <br> -->
             <label for="password">Ingrese su contraseña: </label>
             <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" th:field="*{password}">
             <br>
-            <label for="rptPass">Repita su contraseña: </label>
-            <input type="password" name="rptPass" id="rptPass" placeholder="Vuelva a escribir su contraseña">
+            <label for="dirreccionTrabajo">Provincia</label>
+            <input type="text" name="provincia" id="provincia" placeholder="" th:field="*{provincia}">
             <br>
-            <label for="dirreccionTrabajo">Direccion de Trabajo</label>
-            <input type="text" name="dirTrabajo" id="dirTrabajo" placeholder="Escriba la dirrecion de su consultorio" th:field="*{direccionTrabajo}">
+            <label for="dirreccionTrabajo">Localidad</label>
+            <input type="text" name="localidad" id="localidad" placeholder="" th:field="*{localidad}">
+            <br>
+            <label for="dirreccionTrabajo">Calle</label>
+            <input type="text" name="calle" id="calle" placeholder="" th:field="*{calle}">
+            <br>
+            <label for="dirreccionTrabajo">Numero</label>
+            <input type="number" name="numero" id="numero" placeholder="" th:field="*{numero}">
             <br>
             <label for="titulo">Titulo</label>
             <input type="text" name="titulo" id="titulo" placeholder="Escriba su titulo" th:field="*{titulo}">
@@ -46,5 +50,7 @@
             <button type="submit">Registrarse</button>
         </form>
     </div>
+
 </body>
+
 </html>

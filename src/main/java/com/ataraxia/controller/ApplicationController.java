@@ -29,10 +29,18 @@ public class ApplicationController {
 	public ModelAndView appHome(Authentication authentication) throws Exception {
 		ModelAndView modelView = new ModelAndView("index");
 		Usuario userDetalis = new Usuario();
-		// if (usuarioService.showUsers().size() == 0) {
-		// 	return modelView;
-		// }
-		// else{
+		if (usuarioService.showUsers().size() == 0) {
+			Usuario firstAdmin = new Usuario();
+			firstAdmin.setIdUser(1);
+			firstAdmin.setName("Lionel");
+			firstAdmin.setLastname("Messi");
+			firstAdmin.setUserName("THE GOAT");
+			firstAdmin.setEmail("admin@gmail.com");
+			firstAdmin.setPassword("12345");
+			usuarioService.saveUserAdmin(firstAdmin);
+			return modelView;
+		}
+		else{
 			if (authentication == null) {
 				modelView.addObject("userLogin", false);
 			}
@@ -44,7 +52,7 @@ public class ApplicationController {
 				modelView.addObject("nameOfUser", nameLink);
 				System.out.println("---------"+nameLink+"----------");
 			}
-		// }
+		}
 		
 		return modelView;	
 	}
